@@ -27,10 +27,6 @@
       currentState () {
         return this.isHome ? 'Thuis' : 'Weg'
       }
-    },
-
-    methods: {
-      //
     }
   }
 </script>
