@@ -30,12 +30,12 @@ module.exports = {
   */
   build: {
     babel: {
-      presets({isServer}) {
+      presets: function(isServer) {
         return [
           [
-            'vue-app',
-            {
-              targets: isServer ? { node: 'current' } : {iOS: 9, uglify: true}
+            'vue-app', {
+              useBuiltIns: true,
+              targets: isServer ? { node: 'current' } : {ios_saf: 9, uglify: true}
             }
           ]
         ];
