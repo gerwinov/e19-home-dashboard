@@ -30,16 +30,14 @@ module.exports = {
   */
   build: {
     babel: {
-      presets: function(isServer) {
-        return [
-          [
-            'vue-app', {
-              useBuiltIns: true,
-              targets: isServer ? { node: 'current' } : {ios_saf: 9, uglify: true}
-            }
-          ]
-        ];
-      },
+      presets: [
+        [
+          'vue-app', {
+            useBuiltIns: true,
+            targets: { ios_saf: 9, uglify: true },
+          },
+        ],
+      ],
       plugins: [
         ["transform-imports", {
           "vuetify": {
@@ -50,9 +48,9 @@ module.exports = {
       ]
     },
     vendor: [
-      '~/plugins/vuetify.js',
+      'babel-polyfill',
       'moment',
-      'babel-polyfill'
+      '~/plugins/vuetify.js'
     ],
     extractCSS: true,
     /*
