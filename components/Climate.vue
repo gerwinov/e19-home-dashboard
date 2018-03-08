@@ -1,28 +1,27 @@
 <template>
-  <v-card color="red darken-2" dark flat tile>
-    <v-layout>
-      <v-flex xs8>
-        <v-card-title primary class="title" v-text="'Toon'"></v-card-title>
-
-        <v-card-text>
-          <h1 class="display-3" v-text="currentTemperature"></h1>
-          <span>Ingestelde temperatuur:</span><br>
-          <v-icon x-large>web</v-icon>
-          <span v-text="targetTemperature"></span>
-        </v-card-text>
-      </v-flex>
-
-      <v-flex xs4 mt-2 mr-1>
-        <v-layout row wrap justify-end>
-          <v-btn outline large fab color="white" @click.native="toggleThermostat('Comfort')">
-            <v-icon>flash_on</v-icon>
-          </v-btn>
-          <v-btn outline large fab color="white" @click.native="toggleThermostat('Away')">
-            <v-icon>flash_off</v-icon>
-          </v-btn>
+  <v-card id="climate-card" dark flat tile>
+    <v-layout row>
+      <v-flex xs12 class="mr-3">
+        <h1 class="header-1 text-xs-right" v-text="currentTemperature"></h1>
+        <v-layout id="climate-sub" class="text-xs-right mr-3" align-center>
+          <v-flex>
+            <v-icon medium>web</v-icon>
+          </v-flex>
+          <v-flex xs2 class="sub-1" v-text="targetTemperature"></v-flex>
         </v-layout>
       </v-flex>
     </v-layout>
+
+    <v-layout row justify-end class="mr-2">
+      <v-btn id="climate-button" outline medium fab icon @click.native="toggleThermostat('Comfort')">
+        <img src="/icons/thermo_on.svg">
+      </v-btn>
+      <v-btn id="climate-button" outline medium fab icon @click.native="toggleThermostat('Away')">
+        <img src="/icons/thermo_off.svg">
+      </v-btn>
+    </v-layout>
+
+    <img id="climate-bg" src="/icons/thermo_lg.svg">
   </v-card>
 </template>
 
@@ -55,3 +54,24 @@
     }
   }
 </script>
+
+<style>
+  #climate-card {
+    background-color: #C85F66;
+  }
+
+  #climate-sub {
+    margin-top: -20px;
+    opacity: 0.8;
+  }
+
+  #climate-button {
+    border-width: 3px;
+  }
+
+  #climate-bg {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+  }
+</style>

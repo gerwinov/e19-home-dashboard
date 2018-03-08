@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app id="home-dashboard-app" dark>
     <v-navigation-drawer v-model="drawer" fixed app>
       <v-list>
         <v-list-tile
@@ -19,7 +19,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar fixed app>
+    <v-toolbar id="toolbar" fixed app>
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
 
       <v-toolbar-title v-text="title"></v-toolbar-title>
@@ -43,3 +43,13 @@
     }
   }
 </script>
+
+<style>
+  #home-dashboard-app {
+      background-color: #686765;
+  }
+
+  #toolbar {
+    background-color: #403C3C;
+  }
+</style>
