@@ -15,6 +15,7 @@
 .header-2 {
     @extend .header;
     font-size: 25px;
+    line-height: 27px;
 }
 
 .header-3 {
@@ -31,4 +32,5 @@
 .sub-2 {
     @extend .sub;
     font-size: 16px;
+    line-height: 20px;
 }
