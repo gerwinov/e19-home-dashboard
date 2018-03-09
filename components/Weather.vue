@@ -4,7 +4,7 @@
       <v-flex xs12 class="mr-3">
         <h1 class="header-1 text-xs-right" v-text="formattedTemperature"></h1>
         <v-layout class="card-sub text-xs-right" justify-end>
-          <v-flex class="sub-1" v-text="weatherDescription"></v-flex>
+          <v-flex class="sub-1" v-text="weatherDescriptionText"></v-flex>
         </v-layout>
       </v-flex>
     </v-layout>
@@ -22,7 +22,17 @@
 
     computed: {
       formattedTemperature () {
+        if (isNaN(this.temperature)) {
+          return
+        }
         return Number.parseInt(this.temperature).toLocaleString('nl-NL') + '°C'
+      },
+
+      weatherDescriptionText () {
+        if (this.weatherDescription === 'unknown') {
+          return
+        }
+        return this.weatherDescription
       }
     }
   }
