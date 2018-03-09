@@ -1,37 +1,32 @@
 <template>
-  <v-card color="teal lighten-2" dark flat tile>
-    <v-layout row nowrap>
-      <v-flex xs7>
-        <v-card-text>
-          <span class="title" v-text="'Timer'"></span>
-          <h1 class="display-3" v-text="timer"></h1>
-        </v-card-text>
-      </v-flex>
-
-      <v-flex xs5>
-        <v-card-text>
-          <span class="title" v-text="date"></span>
-          <h1 class="display-3" v-text="time"></h1>
-        </v-card-text>
+  <v-card id="timer-card" dark flat tile>
+    <v-layout row>
+      <v-flex xs12 class="mr-3">
+        <h1 class="header-1 text-xs-right" v-text="time"></h1>
+        <v-layout class="card-sub text-xs-right" justify-end>
+          <v-flex class="sub-1" v-text="date"></v-flex>
+        </v-layout>
       </v-flex>
     </v-layout>
 
-    <v-layout row nowrap>
-      <v-flex xs12>
-        <v-btn outline large fab color="white" v-if="timerInterval" @click.native="stopTimer">
-          <v-icon>timer_off</v-icon>
-        </v-btn>
-        <v-btn outline large fab color="white" v-if="!timerInterval" @click.native="startTimer">
-          <v-icon>timer</v-icon>
-        </v-btn>
-        <v-btn outline large fab color="white" v-if="!timerInterval" @click.native="increateTimer">
-          <v-icon>add</v-icon>
-        </v-btn>
-        <v-btn outline large fab color="white" v-if="!timerInterval" @click.native="decreaseTimer">
-          <v-icon>remove</v-icon>
-        </v-btn>
-      </v-flex>
+    <v-layout row justify-end align-center class="mr-2">
+      <span class="sub-1 mr-1" v-text="timer"></span>
+
+      <v-btn class="card-button" outline medium fab icon v-if="timerInterval" @click.native="stopTimer">
+        <v-icon>timer_off</v-icon>
+      </v-btn>
+      <v-btn class="card-button" outline medium fab icon v-if="!timerInterval" @click.native="startTimer">
+        <v-icon>timer</v-icon>
+      </v-btn>
+      <v-btn class="card-button" outline medium fab v-if="!timerInterval" @click.native="increateTimer">
+        <img src="/icons/plus.svg">
+      </v-btn>
+      <v-btn class="card-button" outline medium fab icon v-if="!timerInterval" @click.native="decreaseTimer">
+        <img src="/icons/minus.svg">
+      </v-btn>
     </v-layout>
+
+    <img class="card-icon-bg" src="/icons/clock_lg.svg">
 
     <v-dialog v-model="dialog" persistent max-width="500px">
       <v-card>
@@ -124,3 +119,9 @@
     }
   }
 </script>
+
+<style>
+  #timer-card {
+    background-color: #E77D86;
+  }
+</style>

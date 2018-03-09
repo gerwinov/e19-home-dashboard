@@ -1,9 +1,11 @@
 <template>
-  <v-card :color="cardColor" dark flat tile ripple @click.native="flipSwitch()">
-    <v-card-title primary class="title" v-text="switcher.attributes.friendly_name"></v-card-title>
-    <v-card-text>
-      <v-icon x-large>power</v-icon>
-    </v-card-text>
+  <v-card :id="cardId" dark flat tile @click.native="flipSwitch()">
+    <v-layout class="text-xs-center">
+      <v-flex>
+        <img src="/icons/power.svg" class="mt-3">
+        <h1 class="header-3 mb-1" v-text="switcher.attributes.friendly_name"></h1>
+      </v-flex>
+    </v-layout>
   </v-card>
 </template>
 
@@ -17,8 +19,8 @@
       switchOn () {
         return this.switcher.state === 'on'
       },
-      cardColor () {
-        return this.switchOn ? 'green accent-2' : 'blue-grey lighten-1'
+      cardId () {
+        return this.switchOn ? 'switch-on-card' : 'switch-off-card'
       }
     },
 
@@ -35,3 +37,12 @@
     }
   }
 </script>
+
+<style>
+  #switch-on-card {
+    background-color: #BDD2A8;
+  }
+  #switch-off-card {
+    background-color: #81807C;
+  }
+</style>

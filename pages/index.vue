@@ -7,11 +7,11 @@
         <climate :climate="climate"></climate>
       </v-flex>
 
-      <v-flex d-flex md2 v-if="temperature && weatherDescription">
+      <v-flex d-flex md3 v-if="temperature && weatherDescription">
         <weather :temperature="temperature" :weatherDescription="weatherDescription"></weather>
       </v-flex>
 
-      <v-flex d-flex md6 v-if="isLoggedIn">
+      <v-flex d-flex md4 v-if="isLoggedIn">
         <timer></timer>
       </v-flex>
 
