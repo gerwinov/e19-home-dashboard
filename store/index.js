@@ -15,11 +15,9 @@ const createStore = () => {
     mutations: {
       toggleSidebar (state) {
         state.sidebar = !state.sidebar
-      }
-    },
+      },
 
-    actions: {
-      login ({state}, payload) {
+      login (state, payload) {
         if (payload.address && payload.port && payload.password) {
           state.address = payload.address
           state.port = payload.port
@@ -44,28 +42,32 @@ const createStore = () => {
             })
         }
       },
-      flipSwitch ({state}, payload) {
+
+      flipSwitch (state, payload) {
         if (payload.id && payload.action) {
           state.connection.callService('switch', payload.action, {
             'entity_id': payload.id
           })
         }
       },
-      toggleLight ({state}, payload) {
+
+      toggleLight (state, payload) {
         if (payload.id && payload.action) {
           state.connection.callService('light', payload.action, {
             'entity_id': payload.id
           })
         }
       },
-      mediaAction ({state}, payload) {
+
+      mediaAction (state, payload) {
         if (payload.id && payload.action) {
           state.connection.callService('media_player', payload.action, {
             'entity_id': payload.id
           })
         }
       },
-      toggleThermostat ({state}, payload) {
+
+      toggleThermostat (state, payload) {
         if (payload.id && payload.action && payload.operationMode) {
           state.connection.callService('climate', payload.action, {
             'entity_id': payload.id,

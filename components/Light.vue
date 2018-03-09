@@ -28,7 +28,7 @@
       toggleLight () {
         let action = this.lightOn ? 'turn_off' : 'turn_on'
 
-        this.$store.dispatch({
+        this.$store.commit({
           type: 'toggleLight',
           id: this.light.entity_id,
           action: action

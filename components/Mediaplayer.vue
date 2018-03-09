@@ -1,8 +1,8 @@
 <template>
   <v-card id="media-card" dark flat tile ripple>
     <v-layout row>
-      <v-flex xs7 class="ml-3 mt-2">
-        <h1 class="header-2" v-text="mediaplayer.attributes.media_title"></h1>
+      <v-flex xs7 class="ml-3 mt-3">
+        <h1 class="header-2 mb-2" v-text="mediaplayer.attributes.media_title"></h1>
         <span class="sub-2" v-text="mediaplayer.attributes.media_artist"></span>
       </v-flex>
       <v-flex xs5 class="mr-3 mt-3">
@@ -64,7 +64,7 @@
         this.mediaAction('media_play')
       },
       mediaAction (action) {
-        this.$store.dispatch({
+        this.$store.commit({
           type: 'mediaAction',
           id: this.mediaplayer.entity_id,
           action: action

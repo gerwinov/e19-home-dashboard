@@ -44,7 +44,7 @@
 
     methods: {
       toggleThermostat (operationMode) {
-        this.$store.dispatch({
+        this.$store.commit({
           type: 'toggleThermostat',
           id: this.climate.entity_id,
           action: 'set_operation_mode',

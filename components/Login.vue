@@ -33,9 +33,9 @@
   export default {
     data () {
       return {
-        address: null,
+        address: '',
         port: 8123,
-        password: null
+        password: ''
       }
     },
 
@@ -50,7 +50,7 @@
 
     methods: {
       login () {
-        this.$store.dispatch({
+        this.$store.commit({
           type: 'login',
           address: this.address,
           port: this.port,
