@@ -64,7 +64,7 @@
         this.mediaAction('media_play')
       },
       mediaAction (action) {
-        this.$store.commit({
+        this.$store.dispatch({
           type: 'mediaAction',
           id: this.mediaplayer.entity_id,
           action: action

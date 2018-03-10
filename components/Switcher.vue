@@ -28,7 +28,7 @@
       flipSwitch () {
         let action = this.switchOn ? 'turn_off' : 'turn_on'
 
-        this.$store.commit({
+        this.$store.dispatch({
           type: 'flipSwitch',
           id: this.switcher.entity_id,
           action: action
