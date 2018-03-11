@@ -8,6 +8,7 @@
           :key="i"
           v-for="(item, i) in items"
           exact
+          active-class="router-link-active"
         >
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -36,7 +37,8 @@
       return {
         drawer: false,
         items: [
-          { icon: 'dashboard', title: 'Dashboard', to: '/' }
+          { icon: 'dashboard', title: 'Dashboard', to: '/' },
+          { icon: 'lightbulb_outline', title: 'Lampconfiguraties', to: '/light' }
         ],
         title: 'E19 - Dashboard'
       }
@@ -51,5 +53,9 @@
 
   #toolbar {
     background-color: #403C3C;
+  }
+
+  .router-link-active {
+    color: #FD7D70;
   }
 </style>

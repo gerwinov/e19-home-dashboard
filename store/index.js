@@ -42,6 +42,15 @@ const createStore = () => {
             'operation_mode': payload.operationMode
           })
         }
+      },
+
+      setLightOptions (state, payload) {
+        if (payload.id && payload.action && payload.options) {
+          state.connection.callService('light', payload.action, {
+            'entity_id': payload.id,
+            ...payload.options
+          })
+        }
       }
     },
 
@@ -61,10 +70,10 @@ const createStore = () => {
                         connection: conn,
                         entities: entities
                       })
-                      return resolve()
-                      // Enable for development purposes
+                      // Enable for development purposes (add response to 'then')
                       // console.log(entities)
                       // console.log(response)
+                      return resolve()
                     })
                 })
               },
