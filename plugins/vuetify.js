@@ -10,7 +10,8 @@ import {
   VGrid,
   VToolbar,
   VDialog,
-  VTextField
+  VTextField,
+  VAlert
 } from 'vuetify'
 
 Vue.use(Vuetify, {
@@ -24,6 +25,7 @@ Vue.use(Vuetify, {
     VGrid,
     VToolbar,
     VDialog,
-    VTextField
+    VTextField,
+    VAlert
   }
 })

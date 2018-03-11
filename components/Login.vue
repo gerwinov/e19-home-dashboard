@@ -6,6 +6,7 @@
       </v-card-title>
       <v-card-text>
         <v-container grid-list-md>
+          <v-alert type="error" :value="true" v-text="error" v-show="error"></v-alert>
           <v-layout wrap>
             <v-flex xs12>
               <v-text-field label="Adres" type="text" required v-model="address"></v-text-field>
@@ -14,7 +15,16 @@
               <v-text-field label="Poort" type="number" required v-model="port"></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-text-field label="Wachtwoord" type="password" required v-model="password"></v-text-field>
+              <v-text-field
+                label="Wachtwoord"
+                required
+                v-model="password"
+                :append-icon="hidePW ? 'visibility' : 'visibility_off'"
+                :append-icon-cb="() => { hidePW = !hidePW }"
+                :type="hidePW ? 'password' : 'text'"
+
+
+              ></v-text-field>
             </v-flex>
           </v-layout>
         </v-container>
@@ -35,7 +45,9 @@
       return {
         address: '',
         port: 8123,
-        password: ''
+        password: '',
+        error: null,
+        hidePW: true
       }
     },
 
@@ -50,12 +62,15 @@
 
     methods: {
       login () {
-        this.$store.commit({
+        this.$store.dispatch({
           type: 'login',
           address: this.address,
           port: this.port,
           password: this.password
         })
+          .catch((error) => {
+            this.error = error
+          })
       }
     }
   }

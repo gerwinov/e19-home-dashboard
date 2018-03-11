@@ -17,29 +17,13 @@ const createStore = () => {
         state.sidebar = !state.sidebar
       },
 
-      login (state, payload) {
-        if (payload.address && payload.port && payload.password) {
+      saveConnection (state, payload) {
+        if (payload.connection) {
           state.address = payload.address
           state.port = payload.port
           state.password = payload.password
-
-          createConnection(`ws://${payload.address}:${payload.port}/api/websocket`, { authToken: payload.password })
-            .then((conn) => {
-              subscribeEntities(conn, entities => {
-                state.connection = conn
-                state.entities = entities
-
-                conn.getServices()
-                  .then((response) => {
-                    // Enable for development purposes
-                    // console.log(entities)
-                    // console.log(response)
-                  })
-              })
-            },
-            err => {
-              console.error('Connection failed with code', err)
-            })
+          state.connection = payload.connection
+          state.entities = payload.entities
         }
       },
 
@@ -62,6 +46,35 @@ const createStore = () => {
     },
 
     actions: {
+      login ({commit}, payload) {
+        if (payload.address && payload.port && payload.password) {
+          return new Promise((resolve, reject) => {
+            createConnection(`ws://${payload.address}:${payload.port}/api/websocket`, { authToken: payload.password })
+              .then((conn) => {
+                subscribeEntities(conn, entities => {
+                  conn.getServices()
+                    .then(() => {
+                      commit('saveConnection', {
+                        address: payload.address,
+                        port: payload.port,
+                        password: payload.password,
+                        connection: conn,
+                        entities: entities
+                      })
+                      return resolve()
+                      // Enable for development purposes
+                      // console.log(entities)
+                      // console.log(response)
+                    })
+                })
+              },
+              err => {
+                return reject(err.message || `Home assistant code: ${err}`)
+              })
+          })
+        }
+      },
+
       flipSwitch ({commit}, payload) {
         commit('callService', {
           ...payload,
