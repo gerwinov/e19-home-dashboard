@@ -1,7 +1,5 @@
 <template>
   <v-container fluid grid-list-md>
-    <login></login>
-
     <v-layout row wrap mt-3>
       <v-flex d-flex md4 v-if="climate">
         <climate :climate="climate"></climate>
@@ -11,7 +9,7 @@
         <weather :temperature="temperature" :weatherDescription="weatherDescription"></weather>
       </v-flex>
 
-      <v-flex d-flex md4 v-if="isLoggedIn">
+      <v-flex d-flex md4>
         <timer></timer>
       </v-flex>
 
@@ -52,7 +50,6 @@ import Weather from '~/components/Weather'
 import Light from '~/components/Light'
 import Mediaplayer from '~/components/Mediaplayer'
 import Timer from '~/components/Timer'
-import Login from '~/components/Login'
 
 import { mapGetters } from 'vuex'
 
@@ -64,8 +61,7 @@ export default {
     Weather,
     Light,
     Mediaplayer,
-    Timer,
-    Login
+    Timer
   },
 
   computed: {
@@ -76,8 +72,7 @@ export default {
       climate: 'getClimate',
       mediaplayer: 'getMediaplayer',
       temperature: 'getTemperature',
-      weatherDescription: 'getWeatherDescription',
-      isLoggedIn: 'isLoggedIn'
+      weatherDescription: 'getWeatherDescription'
     })
   }
 }

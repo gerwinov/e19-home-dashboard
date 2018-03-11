@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="displayDialog" persistent max-width="500px">
+  <v-dialog persistent :value="true" max-width="500px">
     <v-card>
       <v-card-title>
         <span class="headline" v-text="'Home assistant login'"></span>
@@ -22,8 +22,6 @@
                 :append-icon="hidePW ? 'visibility' : 'visibility_off'"
                 :append-icon-cb="() => { hidePW = !hidePW }"
                 :type="hidePW ? 'password' : 'text'"
-
-
               ></v-text-field>
             </v-flex>
           </v-layout>
@@ -38,8 +36,6 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-
   export default {
     data () {
       return {
@@ -51,15 +47,6 @@
       }
     },
 
-    computed: {
-      ...mapGetters({
-        isLoggedIn: 'isLoggedIn'
-      }),
-      displayDialog () {
-        return this.isLoggedIn === false
-      }
-    },
-
     methods: {
       login () {
         this.$store.dispatch({
@@ -68,6 +55,9 @@
           port: this.port,
           password: this.password
         })
+          .then(() => {
+            this.$router.push('/')
+          })
           .catch((error) => {
             this.error = error
           })

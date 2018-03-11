@@ -22,6 +22,9 @@ module.exports = {
     '~/assets/scss/main.scss',
     '~/assets/style/app.styl'
   ],
+  router: {
+    middleware: 'authenticated'
+  },
   /*
   ** Customize the progress bar color
   */
