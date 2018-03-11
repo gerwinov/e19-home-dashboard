@@ -1,6 +1,6 @@
 <template>
   <v-dialog persistent :value="true" max-width="500px">
-    <v-card>
+    <v-card id="login-card">
       <v-card-title>
         <span class="headline" v-text="'Home assistant login'"></span>
       </v-card-title>
@@ -29,7 +29,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" flat @click.native="login">Login</v-btn>
+        <v-btn class="btn-orange" ripple @click.native="login">Login</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -65,3 +65,9 @@
     }
   }
 </script>
+
+<style>
+  #login-card {
+    background-color: #84807B;
+  }
+</style>
