@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app id="home-dashboard-app" dark>
     <v-navigation-drawer v-model="drawer" fixed app>
       <v-list>
         <v-list-tile
@@ -8,6 +8,7 @@
           :key="i"
           v-for="(item, i) in items"
           exact
+          active-class="router-link-active"
         >
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -19,7 +20,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar fixed app>
+    <v-toolbar id="toolbar" fixed app>
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
 
       <v-toolbar-title v-text="title"></v-toolbar-title>
@@ -36,10 +37,25 @@
       return {
         drawer: false,
         items: [
-          { icon: 'dashboard', title: 'Dashboard', to: '/' }
+          { icon: 'dashboard', title: 'Dashboard', to: '/' },
+          { icon: 'lightbulb_outline', title: 'Lampconfiguraties', to: '/light' }
         ],
         title: 'E19 - Dashboard'
       }
     }
   }
 </script>
+
+<style>
+  #home-dashboard-app {
+      background-color: #686765;
+  }
+
+  #toolbar {
+    background-color: #403C3C;
+  }
+
+  .router-link-active {
+    color: #FD7D70;
+  }
+</style>

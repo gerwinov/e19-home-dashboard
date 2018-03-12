@@ -1,0 +1,36 @@
+.header {
+    font-family: 'Karla', sans-serif;
+    font-weight: 400;
+}
+
+.sub {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header-1 {
+    @extend .header;
+    font-size: 70px;
+}
+
+.header-2 {
+    @extend .header;
+    font-size: 25px;
+    line-height: 27px;
+}
+
+.header-3 {
+    @extend .header;
+    font-size: 20px;
+}
+
+.sub-1 {
+    @extend .sub;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.sub-2 {
+    @extend .sub;
+    font-size: 16px;
+    line-height: 20px;
+}

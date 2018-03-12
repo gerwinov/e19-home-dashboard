@@ -1,32 +1,67 @@
 <template>
-  <v-card :color="cardColor" dark flat tile>
-    <v-card-title primary class="title" v-text="tracker.attributes.friendly_name"></v-card-title>
-    <v-card-text>
-      <v-icon x-large>person</v-icon>
-      <span v-text="currentState"></span>
-    </v-card-text>
+  <v-card :id="cardId" dark flat tile>
+    <v-layout class="text-xs-center">
+      <v-flex>
+        <img :src="pictureUrl" class="mt-3">
+        <h1 class="header-3 mb-1" v-text="currentState"></h1>
+      </v-flex>
+    </v-layout>
   </v-card>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     props: {
       tracker: { required: true }
     },
 
     computed: {
+      ...mapGetters({
+        apiUrl: 'getApiUrl'
+      }),
+
       isHome () {
         return this.tracker.state === 'home'
       },
-      cardColor () {
+
+      cardId () {
         if (this.isHome) {
-          return this.tracker.attributes.friendly_name === 'Gerwin' ? 'light-blue lighten-1' : 'pink lighten-1'
+          let gender = this.tracker.attributes.friendly_name.slice(-1)
+          if (gender === 'm') {
+            return 'male-home-card'
+          }
+          if (gender === 'f') {
+            return 'female-home-card'
+          }
+          return 'no-gender-home-card'
         }
-        return 'blue-grey lighten-1'
+        return 'away-card'
       },
+
       currentState () {
         return this.isHome ? 'Thuis' : 'Weg'
+      },
+
+      pictureUrl () {
+        return `${this.apiUrl}${this.tracker.attributes.entity_picture}`
       }
     }
   }
 </script>
+
+<style>
+  #male-home-card {
+    background-color: #68AEC1;
+  }
+  #female-home-card {
+    background-color: #E66E77;
+  }
+  #no-gender-home-card {
+    background-color: #C4835E;
+  }
+  #away-card {
+    background-color: #81807C;
+  }
+</style>

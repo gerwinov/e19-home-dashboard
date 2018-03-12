@@ -1,10 +1,15 @@
 <template>
-  <v-card color="yellow darken-2" dark flat tile>
-    <v-card-title primary class="title" v-text="'Weer'"></v-card-title>
-    <v-card-text>
-      <h1 class="display-3" v-text="formattedTemperature"></h1>
-      <span class="subheading" v-text="weatherDescription"></span>
-    </v-card-text>
+  <v-card id="weather-card" dark flat tile>
+    <v-layout row>
+      <v-flex xs12 class="mr-3">
+        <h1 class="header-1 text-xs-right" v-text="formattedTemperature"></h1>
+        <v-layout class="card-sub text-xs-right" justify-end>
+          <v-flex class="sub-1" v-text="weatherDescriptionText"></v-flex>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+
+    <img class="card-icon-bg" src="/icons/cloud_lg.svg">
   </v-card>
 </template>
 
@@ -17,8 +22,24 @@
 
     computed: {
       formattedTemperature () {
+        if (isNaN(this.temperature)) {
+          return
+        }
         return Number.parseInt(this.temperature).toLocaleString('nl-NL') + '°C'
+      },
+
+      weatherDescriptionText () {
+        if (this.weatherDescription === 'unknown') {
+          return
+        }
+        return this.weatherDescription
       }
     }
   }
 </script>
+
+<style>
+  #weather-card {
+    background-color: #FF977C;
+  }
+</style>

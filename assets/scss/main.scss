@@ -1,0 +1,23 @@
+/*
+ * Fonts
+ */
+@font-face {
+  font-family: 'Karla';
+  src: url('~/fonts/Karla-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('~/fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+/*
+ * Modules and generic styles
+ */
+@import './partials/base';
+
+/*
+ * Partials
+ */
+@import './partials/button';
+@import './partials/card';
