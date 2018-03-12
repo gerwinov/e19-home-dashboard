@@ -36,7 +36,7 @@
         <audio ref="audio" src="timer_ends.wav" type="audio/wav"></audio>
         <v-flex>
           <v-card-actions>
-            <v-btn color="warning" block large flat @click.stop="hideDialog">Stop</v-btn>
+            <v-btn class="btn-orange" block large flat @click.stop="hideDialog">Stop</v-btn>
           </v-card-actions>
         </v-flex>
       </v-card>

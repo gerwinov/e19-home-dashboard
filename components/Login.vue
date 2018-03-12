@@ -9,10 +9,10 @@
           <v-alert type="error" :value="true" v-text="error" v-show="error"></v-alert>
           <v-layout wrap>
             <v-flex xs12>
-              <v-text-field label="Adres" type="text" required v-model="address"></v-text-field>
+              <v-text-field label="Adres" type="text" required v-model="address" color="cyan accent-4"></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-text-field label="Poort" type="number" required v-model="port"></v-text-field>
+              <v-text-field label="Poort" type="number" required v-model="port" color="cyan accent-4"></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field
@@ -22,6 +22,7 @@
                 :append-icon="hidePW ? 'visibility' : 'visibility_off'"
                 :append-icon-cb="() => { hidePW = !hidePW }"
                 :type="hidePW ? 'password' : 'text'"
+                color="cyan accent-4"
               ></v-text-field>
             </v-flex>
           </v-layout>
