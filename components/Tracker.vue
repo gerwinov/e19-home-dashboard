@@ -25,29 +25,41 @@
       isHome () {
         return this.tracker.state === 'home'
       },
+
       cardId () {
         if (this.isHome) {
-          return this.tracker.attributes.friendly_name === 'Gerwin' ? 'gerwin-home-card' : 'sophie-home-card'
+          let gender = this.tracker.attributes.friendly_name.slice(-1)
+          if (gender === 'm') {
+            return 'male-home-card'
+          }
+          if (gender === 'f') {
+            return 'female-home-card'
+          }
+          return 'no-gender-home-card'
         }
         return 'away-card'
       },
+
       currentState () {
         return this.isHome ? 'Thuis' : 'Weg'
       },
+
       pictureUrl () {
-        let name = this.tracker.attributes.friendly_name === 'Gerwin' ? 'gerwin' : 'sophie'
-        return `${this.apiUrl}/local/${name}.png`
+        return `${this.apiUrl}${this.tracker.attributes.entity_picture}`
       }
     }
   }
 </script>
 
 <style>
-  #gerwin-home-card {
+  #male-home-card {
     background-color: #68AEC1;
   }
-  #sophie-home-card {
+  #female-home-card {
     background-color: #E66E77;
+  }
+  #no-gender-home-card {
+    background-color: #C4835E;
   }
   #away-card {
     background-color: #81807C;
