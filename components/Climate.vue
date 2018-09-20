@@ -34,11 +34,11 @@
     computed: {
       currentTemperature () {
         return this.climate.attributes.current_temperature.toLocaleString('nl-NL') +
-          this.climate.attributes.unit_of_measurement
+          '°C'
       },
       targetTemperature () {
         return this.climate.attributes.temperature.toLocaleString('nl-NL') +
-          this.climate.attributes.unit_of_measurement
+          '°C'
       }
     },
 
