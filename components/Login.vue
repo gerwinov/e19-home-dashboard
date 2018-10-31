@@ -40,9 +40,9 @@
   export default {
     data () {
       return {
-        address: '',
-        port: 8123,
-        password: '',
+        address: null,
+        port: 17189,
+        password: null,
         error: null,
         hidePW: true
       }
@@ -60,7 +60,7 @@
             this.$router.push('/')
           })
           .catch((error) => {
-            this.error = error
+            this.error = `Home assistant code: ${error}`
           })
       }
     }

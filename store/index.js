@@ -1,5 +1,5 @@
 import Vuex from 'vuex'
-import { createConnection, subscribeEntities } from 'home-assistant-js-websocket'
+import { Auth, createConnection, subscribeEntities, callService } from 'home-assistant-js-websocket'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -29,7 +29,7 @@ const createStore = () => {
 
       callService (state, payload) {
         if (payload.id && payload.action && payload.name) {
-          state.connection.callService(payload.name, payload.action, {
+          callService(state.connection, payload.name, payload.action, {
             'entity_id': payload.id
           })
         }
@@ -37,7 +37,7 @@ const createStore = () => {
 
       toggleThermostat (state, payload) {
         if (payload.id && payload.action && payload.operationMode) {
-          state.connection.callService('climate', payload.action, {
+          callService(state.connection, 'climate', payload.action, {
             'entity_id': payload.id,
             'operation_mode': payload.operationMode
           })
@@ -46,7 +46,7 @@ const createStore = () => {
 
       setLightOptions (state, payload) {
         if (payload.id && payload.action && payload.options) {
-          state.connection.callService('light', payload.action, {
+          callService(state.connection, 'light', payload.action, {
             'entity_id': payload.id,
             ...payload.options
           })
@@ -55,31 +55,24 @@ const createStore = () => {
     },
 
     actions: {
-      login ({commit}, payload) {
+      async login ({commit}, payload) {
         if (payload.address && payload.port && payload.password) {
-          return new Promise((resolve, reject) => {
-            createConnection(`ws://${payload.address}:${payload.port}/api/websocket`, { authToken: payload.password })
-              .then((conn) => {
-                subscribeEntities(conn, entities => {
-                  conn.getServices()
-                    .then(() => {
-                      commit('saveConnection', {
-                        address: payload.address,
-                        port: payload.port,
-                        password: payload.password,
-                        connection: conn,
-                        entities: entities
-                      })
-                      // Enable for development purposes (add response to 'then')
-                      // console.log(entities)
-                      // console.log(response)
-                      return resolve()
-                    })
-                })
-              },
-              err => {
-                return reject(err.message || `Home assistant code: ${err}`)
-              })
+          let auth = new Auth({
+            access_token: payload.password,
+            // Set expires to very far in the future
+            expires: new Date(new Date().getTime() + 1e11),
+            hassUrl: `http://${payload.address}:${payload.port}`
+          })
+
+          const connection = await createConnection({ auth })
+          subscribeEntities(connection, entities => {
+            commit('saveConnection', {
+              address: payload.address,
+              port: payload.port,
+              password: payload.password,
+              connection: connection,
+              entities: entities
+            })
           })
         }
       },
