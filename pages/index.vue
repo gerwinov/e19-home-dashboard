@@ -20,7 +20,7 @@
             <v-card dark flat tile id="scene-card-1">
               <v-layout class="text-xs-center fill-height">
                 <v-flex>
-                  <img src="/icons/night.svg" class="mt-3">
+                  <img src="/icons/night.svg" class="mt-4 h-60">
                 </v-flex>
               </v-layout>
             </v-card>
@@ -30,7 +30,7 @@
             <v-card dark flat tile id="scene-card-2">
               <v-layout class="text-xs-center fill-height">
                 <v-flex>
-                  <img src="/icons/romantic.svg" class="mt-3">
+                  <img src="/icons/romantic.svg" class="mt-4 mr-3 ml-3 h-60">
                 </v-flex>
               </v-layout>
             </v-card>
@@ -109,5 +109,8 @@ export default {
   }
   #scene-card-2 {
     background-color: #F9EA95;
+  },
+  .h-60 {
+    height: 60px;
   }
 </style>

@@ -62,9 +62,9 @@ const createStore = () => {
             // Set expires to very far in the future
             expires: new Date(new Date().getTime() + 1e11),
             hassUrl: `http://${payload.address}:${payload.port}`
-          });
+          })
 
-          const connection = await createConnection({ auth });
+          const connection = await createConnection({ auth })
           subscribeEntities(connection, entities => {
             commit('saveConnection', {
               address: payload.address,
@@ -73,7 +73,7 @@ const createStore = () => {
               connection: connection,
               entities: entities
             })
-          });
+          })
         }
       },
 
