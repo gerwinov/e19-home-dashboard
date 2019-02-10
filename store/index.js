@@ -106,7 +106,7 @@ const createStore = () => {
 
       getApiUrl: state => {
         if (state.address !== null && state.port !== null) {
-          return `http://${state.address}:${state.port}`
+          return `https://${state.address}:${state.port}`
         }
       },
 
