@@ -61,7 +61,7 @@ const createStore = () => {
             access_token: payload.password,
             // Set expires to very far in the future
             expires: new Date(new Date().getTime() + 1e11),
-            hassUrl: `https://${payload.address}:${payload.port}`
+            hassUrl: `http://${payload.address}:${payload.port}`
           })
 
           const connection = await createConnection({ auth })
